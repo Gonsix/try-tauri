@@ -12,8 +12,15 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
-  function executeCommand() {
+  function executeSimpleHello() {
     invoke("simple_hello");
+  }
+
+  async function executeHelloWithMessage() {
+    const msg: string = await invoke<string>("hello_with_message", {
+      message: "こんにちは🇯🇵",
+    });
+    console.log(msg);
   }
 
   return (
@@ -48,8 +55,14 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg}</p>
+
       <div>
-        <button onClick={executeCommand}>Click to Execute Command</button>
+        <button onClick={executeSimpleHello}>Click to Execute Command</button>
+      </div>
+      <div>
+        <button onClick={executeHelloWithMessage}>
+          Click to Execute Command with an Arg
+        </button>
       </div>
     </main>
   );

@@ -23,6 +23,15 @@ function App() {
     console.log(msg);
   }
 
+  async function executeHellowithObject() {
+    const message = {
+      field_str: "John",
+      field_int: 30,
+    };
+    let result = await invoke("hello_with_object", { message });
+    console.log(result);
+  }
+
   return (
     <main className="container">
       <h1>Welcome to Tauri + React</h1>
@@ -56,14 +65,13 @@ function App() {
       </form>
       <p>{greetMsg}</p>
 
-      <div>
-        <button onClick={executeSimpleHello}>Click to Execute Command</button>
-      </div>
-      <div>
-        <button onClick={executeHelloWithMessage}>
-          Click to Execute Command with an Arg
-        </button>
-      </div>
+      <button onClick={executeSimpleHello}>Click to Execute Command</button>
+      <button onClick={executeHelloWithMessage}>
+        Click to Execute Command with an Arg
+      </button>
+      <button onClick={executeHellowithObject}>
+        Click to Execute Command with an User-defined Object
+      </button>
     </main>
   );
 }
